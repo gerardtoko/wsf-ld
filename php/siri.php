@@ -1,13 +1,9 @@
 <?php
 
 include('vendor/autoload.php'); // won't include it again in the following examples
-include('classifier/index.php');
 
-use NlpTools\Tokenizers\WhitespaceTokenizer;
-use NlpTools\Models\FeatureBasedNB;
-use NlpTools\Documents\TrainingSet;
+include('classifier/index.php');
 use NlpTools\Documents\TokensDocument;
-use NlpTools\FeatureFactories\DataAsFeatures;
 use NlpTools\Classifiers\MultinomialNBClassifier;
 
 
@@ -31,7 +27,7 @@ foreach ($testing as $d)
             $tok->tokenize($d[1]) // The document
         )
     );
-    printf($prediction);
+    printf("$prediction\n");
 }
 
 ?>
