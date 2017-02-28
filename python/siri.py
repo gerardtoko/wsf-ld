@@ -1,36 +1,56 @@
+# coding: utf-8
+
 """
 Suppose you have some texts of news and know their categories.
 You want to train a system with this pre-categorized/pre-classified
 texts. So, you have better call this data your training set.
 """
-from naiveBayesClassifier import tokenizer
-from naiveBayesClassifier.trainer import Trainer
-from naiveBayesClassifier.classifier import Classifier
+from lib import get_classer
+from data import newsSet
 
-newsTrainer = Trainer(tokenizer.Tokenizer(stop_words = [], signs_to_remove = ["?!#%&"])
+excec = {
+    'hello': 1,
+    'tiao': 0,
+    'question': 0
+}
 
-# You need to train the system passing each text one by one to the trainer module.
-newsSet = [
-    {'text': 'not to eat too much is not enough to lose weight', 'category': 'health'},
-    {'text': 'Russia is trying to invade Ukraine', 'category': 'politics'},
-    {'text': 'do not neglect exercise', 'category': 'health'},
-    {'text': 'Syria is the main issue, Obama says', 'category': 'politics'},
-    {'text': 'eat to lose weight', 'category': 'health'},
-    {'text': 'you should not eat much', 'category': 'health'}
-]
+def ma_loop(value):
+    newsClassifier = get_classer()
+    classification = newsClassifier.classify(value)
+    # [('tiao', 0.0), ('question', 0.0), ('hello', 0.0)]
+    category = classification[0][0]
+    score = classification[0][1]
 
-for news in newsSet:
-    newsTrainer.train(news['text'], news['category'])
+    if score > 0:
+        newsSet.append({'text': value, 'category': category})
+        excec[category] += 1
+        if category == 'hello': return hello(value)
+        if category == 'question': return question(value)
+        if category == 'tiao': return tiao(value)
 
-# When you have sufficient trained data, you are almost done and can start to use
-# a classifier.
-newsClassifier = Classifier(newsTrainer.data, tokenizer.Tokenizer(stop_words = [], signs_to_remove = ["?!#%&"])
+    return pascompris(value)
 
-# Now you have a classifier which can give a try to classifiy text of news whose
-# category is unknown, yet.
-unknownInstance = "Even if I eat too much, is not it possible to lose some weight"
-classification = newsClassifier.classify(unknownInstance)
+def question(value=None):
+    value = raw_input("Sur quoi ?")
+    return ma_loop(value)
 
-# the classification variable holds the possible categories sorted by
-# their probablity value
-print classification
+def hello(value=None):
+    if excec['hello'] is 1:
+        value = raw_input("Bonjour, Quelle est votre question ?")
+
+    if excec['hello'] is 2:
+        value = raw_input("Oui, bonjour, quelle est votre question, je peux vous aider ?")
+
+    if excec['hello'] > 3:
+        value = raw_input("Oui, je vous écoute nous sommes à votre service ?")
+
+    return ma_loop(value)
+
+def pascompris(value=None):
+    value = raw_input("Je n'ai pas compris, que voulez vous dire ?")
+    return ma_loop(value)
+
+def tiao(value=None):
+    print "Aurevoir et merci de votre visite!"
+
+hello()
