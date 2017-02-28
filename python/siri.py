@@ -30,7 +30,7 @@ def ma_loop(value):
     return pascompris(value)
 
 def question():
-    value = raw_input("Sur quoi ?")
+    value = raw_input("A propos ?")
     return ma_loop(value)
 
 def hello():

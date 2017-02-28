@@ -25,6 +25,10 @@ var ma_loop = function(value) {
   return pascompris();
 }
 
+var question = function() {
+  return commander("A propos ?")
+}
+
 var hello = function() {
   if (excec['hello'] == 1) {
     return commander("Bonjour, Quelle est votre question ?")
