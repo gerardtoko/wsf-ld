@@ -24,17 +24,16 @@ def ma_loop(value):
     if score > 0:
         newsSet.append({'text': value, 'category': category})
         excec[category] += 1
-        if category == 'hello': return hello(value)
-        if category == 'question': return question(value)
-        if category == 'tiao': return tiao(value)
-
+        if category == 'hello': return hello()
+        if category == 'question': return question()
+        if category == 'tiao': return tiao()
     return pascompris(value)
 
-def question(value=None):
+def question():
     value = raw_input("Sur quoi ?")
     return ma_loop(value)
 
-def hello(value=None):
+def hello():
     if excec['hello'] is 1:
         value = raw_input("Bonjour, Quelle est votre question ?")
 
@@ -46,11 +45,11 @@ def hello(value=None):
 
     return ma_loop(value)
 
-def pascompris(value=None):
+def pascompris():
     value = raw_input("Je n'ai pas compris, que voulez vous dire ?")
     return ma_loop(value)
 
-def tiao(value=None):
+def tiao():
     print "Aurevoir et merci de votre visite!"
 
 hello()
