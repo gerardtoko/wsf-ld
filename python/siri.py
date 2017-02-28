@@ -36,12 +36,13 @@ def question():
 def hello():
     if excec['hello'] is 1:
         value = raw_input("Bonjour, Quelle est votre question ?")
-
-    if excec['hello'] is 2:
+    elif excec['hello'] is 2:
         value = raw_input("Oui, bonjour, quelle est votre question, je peux vous aider ?")
-
-    if excec['hello'] > 3:
+    elif excec['hello'] is 3:
         value = raw_input("Oui, je vous écoute nous sommes à votre service ?")
+    else:
+        value = raw_input("Bonjour,")
+
 
     return ma_loop(value)
 
