@@ -16,4 +16,7 @@ newsSet = [
     {'text': 'Aurevoir', 'category': 'tiao'},
     {'text': 'Merci, bonne journée !', 'category': 'tiao'},
     {'text': 'Top merci pour votre aide', 'category': 'tiao'},
+    {'text': 'PSG / Marseille', 'category': 'classico'},
+    {'text': 'Dimanche dernier', 'category': 'classico'},
+    {'text': 'Evra', 'category': 'classico'},
 ]

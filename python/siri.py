@@ -11,7 +11,8 @@ from data import newsSet
 excec = {
     'hello': 1,
     'tiao': 0,
-    'question': 0
+    'question': 0,
+    'classico': 0
 }
 
 def ma_loop(value):
@@ -22,16 +23,29 @@ def ma_loop(value):
     score = classification[0][1]
 
     if score > 0:
-        newsSet.append({'text': value, 'category': category})
+        # newsSet.append({'text': value, 'category': category})
         excec[category] += 1
         if category == 'hello': return hello()
         if category == 'question': return question()
         if category == 'tiao': return tiao()
+        if category == 'classico': return classico(value)
     return pascompris(value)
 
 def question():
     value = raw_input("A propos ?")
     return ma_loop(value)
+
+def classico(value=None):
+    if 'Evra' in value:
+        print 'Oui, il était très mauvais'
+        value = raw_input("Vous avez une autre question ?")
+        return ma_loop(value)
+
+    if 'PSG' in value:
+        print 'Effectivement, très fort'
+        value = raw_input("Vous voulez savoir comment evra à jour ?")
+        return ma_loop(value)
+
 
 def hello():
     if excec['hello'] is 1:
@@ -40,6 +54,8 @@ def hello():
         value = raw_input("Oui, bonjour, quelle est votre question, je peux vous aider ?")
     elif excec['hello'] is 3:
         value = raw_input("Oui, je vous écoute nous sommes à votre service ?")
+    elif excec['hello'] is 4:
+        value = raw_input("Bonjour, j'ai compris pour la quatrieme fois !!, je vous écoute")
     else:
         value = raw_input("Bonjour,")
 
