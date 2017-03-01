@@ -1,7 +1,7 @@
 <?php
 
 include('vendor/autoload.php'); // won't include it again in the following examples
-include('lib.php');
+include_once('lib.php');
 use NlpTools\Documents\TokensDocument;
 use NlpTools\Classifiers\MultinomialNBClassifier;
 
@@ -18,7 +18,7 @@ function bonjour() {
 }
 
 $text = bonjour();
-
+$cls = new MultinomialNBClassifier($ff, $model);
 $what_category = $cls->classify(
     array('ham','spam'), // all possible classes
     new TokensDocument($tok->tokenize($text) // The document
